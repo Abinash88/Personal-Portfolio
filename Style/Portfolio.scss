@@ -203,6 +203,15 @@ li {
                         background-color: #10301b;
                     }
 
+
+                    @include responsive(1000px) {
+
+                        .Login_box{
+                            left:-10rem !important;
+                            z-index: 99;
+                        }
+                    }
+
                     .Login_box {
                         position: absolute;
                         transition: .3s;
@@ -219,6 +228,7 @@ li {
                         visibility: collapse;
                         align-items: start;
                         border-radius: 5px;
+                        z-index: 9;
                         overflow: hidden;
 
                         .top_picture_box {
@@ -302,6 +312,15 @@ li {
                     color: rgb(16, 24, 20);
                 }
 
+                @include responsive(1000px) {
+
+                    .search_box{
+                        left:-18rem !important;
+                        z-index: 99;
+                    }
+                }
+
+
                 .search_box {
                     width: 0;
                     height: 0;
@@ -309,11 +328,12 @@ li {
                     box-shadow: 6px 6px 1px #dbdbdb;
                     position: absolute;
                     top: 50px;
-                    background-color: #ffffff;
+                    background-color: #f9fdfa;
                     left: -200px;
                     transition: .3s;
                     border-radius: 5px;
                     padding: 10px;
+                    z-index: 9;
                     visibility: collapse;
 
                     .form {
@@ -323,7 +343,7 @@ li {
 
                         input {
                             @include width();
-                            border: 2px solid #1c9b4d;
+                            border: 2px solid #dfece3;
                             border-radius: 5px;
                             padding: 5px 5px 5px 50px;
                             font-size: 17px;
@@ -331,7 +351,7 @@ li {
                         }
 
                         input:focus {
-                            border: 2px solid #009632;
+                            border: 2px solid #020f06;
                         }
 
                         i {
@@ -357,11 +377,32 @@ li {
 
 
 // main body section started 
+
+@include responsive(600px) {
+    .image_slider_body{
+        overflow: hidden !important;
+    }
+}
+
 .image_slider_body {
     width: 100%;
     height: calc(100vh - 90px);
     background-color: #eff7f2;
     display: flex;
+
+
+    @include responsive(1100px) {
+        .inner_body {
+            width: 90% !important;
+        }
+    }
+
+    @include responsive(600px) {
+        .inner_body{
+            overflow: visible !important;
+        }
+    }
+
 
     .inner_body {
         width: 80%;
@@ -370,6 +411,7 @@ li {
         display: flex;
         overflow: hidden;
 
+        
         .left_text_area {
             display: flex;
             flex-direction: column;
@@ -378,7 +420,55 @@ li {
             margin-top: 100px;
             position: relative;
             width: 50%;
+            overflow: hidden;
 
+
+            @include responsive(1500px) {
+                h2 {
+                    font-size: 60px !important;
+                    line-height: 79px !important;
+                }
+
+                h4 {
+                    font-size: 25px !important;
+                    width: 100%;
+                }
+
+                p {
+                    font-size: 15px !important;
+                }
+            }
+
+            @include responsive(1130px) {
+                h2 {
+                    font-size: 45px !important;
+                    line-height: 65px !important;
+
+                }
+
+                h4 {
+                    font-size: 20px !important;
+                    width: 100%;
+                }
+
+                p {
+                    font-size: 15px !important;
+                }
+            }
+
+            @include responsive(717px) {
+                h2{
+                    font-size:35px !important ;
+                    line-height: 47px !important;
+                }
+
+                h4{
+                    font-size: 16px !important;
+                }
+
+                p{
+                }
+            }
 
             h2 {
                 font-size: 75px;
@@ -388,7 +478,7 @@ li {
                 font-family: 'Libre Baskerville', serif;
                 letter-spacing: -1px;
                 margin: 10px 0 15px 0;
-                z-index:9 ;
+                z-index: 2;
 
                 span {
                     font-family: 'Libre Baskerville', serif;
@@ -411,7 +501,6 @@ li {
             p {
                 @include paragraph();
                 margin-top: 20px;
-                margin-right: 40px;
                 line-height: 31px;
             }
 
@@ -433,41 +522,86 @@ li {
             }
         }
 
+
+        @include responsive(828px) {
+            .right_image_area {
+                width: 400px !important;
+
+                .background_color {
+                    position: relative !important;
+                    img {
+                        position: absolute;
+                        transform: translatex(-6rem) rotate(-10deg) !important;
+                    }
+                }
+            }
+        }
+
+        @include responsive(600px) {
+            .right_image_area{
+                width: 200px !important;
+            }
+        }
+
+
         .right_image_area {
             display: flex;
             justify-content: start;
             align-items: center;
-            width: 700px;
+            width: 600px;
             height: 100%;
             margin: auto;
-            overflow: hidden;
-            background-color: red;
 
             .background_color {
                 width: 90%;
                 height: 90%;
                 position: relative;
 
-                .roundcolor{
+                .roundcolor {
                     position: absolute;
                     width: 350px;
                     height: 350px;
                     background-color: #008000d7;
                     border-radius: 50%;
+                    left: 6rem;
                 }
 
+                @include responsive(500px) {
+                    img{
+                        left: -1rem !important;
+                    }
+                }
 
                 img {
                     position: absolute;
                     transform: rotate(-10deg);
-                    width: 100%;
-                    left: -90px;
+                    width: 600px;
                     height: auto;
                 }
 
             }
 
-           
+            .background_color::before {
+                content: '';
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                background-color: #0080008e;
+                position: absolute;
+                left: -12rem;
+            }
+
+            .background_color::after {
+                content: '';
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background-color: #00800050;
+                position: absolute;
+                left: -25rem;
+                top: -1rem;
+            }
+
         }
     }
 }
