@@ -1,0 +1,55 @@
+
+*, *::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+$basicWhite:#f3f3f3;
+$HeadColor:#021b11;
+$paragraph:#5b5f5c;
+$maincolor:#157e15;
+
+
+
+@mixin flex() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexbetween() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin width() {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin widthfull() {
+    width: 100%;
+    height: 100vh;
+}
+
+@mixin paragraph() {
+    font-size: 16px;
+    font-weight: 200;
+    color: $paragraph;
+}
+
+@mixin Header() {
+    font-size: 44px;
+    font-weight: 700;
+    color:$HeadColor ;
+}
+
+@mixin responsive($width) {
+    @media screen and (max-width:$width) {
+        @content;
+    }
+}
