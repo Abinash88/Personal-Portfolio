@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="/css/Portfolio.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;700;800&family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@500;600;700;800&family=Oswald:wght@300;400;500;600;700&family=PT+Sans:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,100&family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="Main_header">
+      <div class="innerheader">
+        <div class="Logo_side">
+          <i class="fa-solid fa-bars"></i>
+          <a href="/">
+            <img src="/images/abinash-logo.png" alt="" />
+          </a>
+        </div>
+        <div class="Nav_side">
+          <nav id="navbar">
+            <ul>
+              <li>
+                <a style="color: #009632" href="/code//Portfolio.html">Home</a>
+              </li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Portfolio</a></li>
+            </ul>
+          </nav>
+          <div class="right_login">
+            <span id="iconBar">
+              <i class="fa fa-user" id="login_icon"></i>
+              <div id="Login_box" class="Login_box">
+                <div class="top_picture_box">
+                  <div class="ProfilePic">
+                    <img src=<%if(user.picture){%> <%=user.picture%><%}%>  alt="" />
+                  </div>
+                  <div class="rightname">
+                    <% if(user) {%>
+                    <h4><%= user.displayName%></h4>
+                    <%} else {%> null <%}%> <% if(user) {%>
+                    <p><%= user.email%></p>
+                    <%} else {%> null <%}%>
+                  </div>
+                </div>
+                <% if(!user) {%>
+                <a class="button" href="/auth/google">Login</a>
+                <%}else {%>
+                <a class="button" href="/logout">LoginOut</a>
+                <%} %>
+              </div>
+            </span>
+            <i id="Search" title="Search" class="fa fa-search"></i>
+            <div id="searchbox" class="search_box">
+              <div class="form">
+                <input type="search" placeholder="Search here" />
+                <i class="fa fa-search"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- mainbody section started  -->
+    <div class="image_slider_body">
+      <div class="inner_body">
+        <div class="left_text_area">
+          <h2>Hi my name is <span>Abinash </span>subedi</h2>
+          <h4>Full Stack Developer</h4>
+          <p>
+            Welcome to my Protfolio website i will create you a responsive
+            website design for your company. I will also provide the full seo
+            and and other services for free.
+          </p>
+          <div class="worklogo">
+            <button>Call Me</button>
+            <div class="logos">
+              <h5>Next Js</h5>
+
+              <h5>NODE JS</h5>
+
+              <h5>MONGO-DB</h5>
+            </div>
+          </div>
+          <div class="skills">
+            <div class="">
+              <img src="" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="right_image_area">
+          <div class="background_color">
+            <div class="roundcolor"></div>
+            <img src="/images/png-abinash.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- services section of portfolio started  -->
+    <div class="services_section">
+      <div class="inner_section"></div>
+    </div>
+    <!-- services section of portfolio ended  -->
+
+    <script src="/js/Portfolio.js" defer></script>
+  </body>
+</html>
