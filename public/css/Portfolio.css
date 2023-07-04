@@ -681,7 +681,7 @@ li {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #157e15;
+  background-color: rgb(14, 21, 36);
   display: inline;
   padding: 10px 20px;
   border-radius: 5px;
@@ -692,14 +692,13 @@ li {
   height: 100%;
   display: grid;
   position: relative;
-  grid-template-columns: repeat(auto-fit, minmax(200px 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .About_me_section .inner_About_section .bottom_container .right_side_about .more_skils a {
   color: #001306;
   font-weight: 600;
   text-decoration: none;
   border: 2px solid #001306;
-  display: inline;
   align-items: center;
   margin: auto;
   justify-content: center;
@@ -710,6 +709,11 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
+}
+.About_me_section .inner_About_section .bottom_container .right_side_about .more_skils a:hover {
+  background: #001306;
+  color: white;
 }
 
 .contact_form {
