@@ -4,10 +4,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-require("../maincode/auth");
+require("../auth");
 const ejs = require("ejs");
 const path = require("path");
-const  SendMail = require("./Email");
+const  SendMail = require("../Email");
 
 const app = express();
 
