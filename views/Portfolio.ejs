@@ -13,6 +13,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,6 +30,7 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header class="Main_header">
       <div class="innerheader">
@@ -35,12 +44,16 @@
           <nav id="navbar">
             <ul>
               <li>
-                <a style="color: #009632" href="/code//Portfolio.html">Home</a>
+                <a style="color: #009632" href="/">Home</a>
               </li>
               <li><a href="#">Services</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Contact</a></li>
-              <li><a href="#">Portfolio</a></li>
+              <li>
+                <a href=<%if(!user){%>
+                  "#" <%}else if(user){%> '/PortfolioShow' <%}%>>Portfolio</a
+                >
+              </li>
             </ul>
           </nav>
           <div class="right_login">
@@ -49,7 +62,10 @@
               <div id="Login_box" class="Login_box">
                 <div class="top_picture_box">
                   <div class="ProfilePic">
-                    <img src=<%if(user.picture){%> <%=user.picture%><%}%>  alt="" />
+                    <img src=<%if(user.picture){%>
+                    <%=user.picture%> <%}else{%>
+                    'data:image/png;base64,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'
+                    <%}%> alt="" />
                   </div>
                   <div class="rightname">
                     <% if(user) {%>
@@ -59,7 +75,7 @@
                     <%} else {%> null <%}%>
                   </div>
                 </div>
-                <% if(!user) {%>
+                <% if(!user.displayName) {%>
                 <a class="button" href="/auth/google">Login</a>
                 <%}else {%>
                 <a class="button" href="/logout">LoginOut</a>
@@ -92,18 +108,26 @@
           <div class="worklogo">
             <button>Call Me</button>
             <div class="logos">
-              <h5>Next Js</h5>
+              <h5>
+                <a style="text-decoration: none" href="http://nextjs.org"
+                  >Next Js</a
+                >
+              </h5>
 
-              <h5>NODE JS</h5>
+              <h5>
+                <a style="text-decoration: none" href="http://nodejs.com"
+                  >NODE JS</a
+                >
+              </h5>
 
-              <h5>MONGO-DB</h5>
+              <h5>
+                <a style="text-decoration: none" href="http://mongodb.com"
+                  >MONGO-DB</a
+                >
+              </h5>
             </div>
           </div>
-          <div class="skills">
-            <div class="">
-              <img src="" alt="" />
-            </div>
-          </div>
+          <div class="skills"></div>
         </div>
         <div class="right_image_area">
           <div class="background_color">
@@ -115,11 +139,154 @@
     </div>
 
     <!-- services section of portfolio started  -->
-    <div class="services_section">
-      <div class="inner_section"></div>
+    <div class="About_me_section">
+      <div class="inner_About_section">
+        <h4>My Skills</h4>
+        <p>
+          I have this level of knowledge in the field of web development and
+          design
+        </p>
+        <div class="bottom_container">
+          <div class="left_side_Work">
+            <div class="knowledge">
+              <h5>HTML</h5>
+              <div
+                class="progress"
+                role="progressbar"
+                aria-label="Default striped example"
+                aria-valuenow="10"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div
+                  style="background-color: #dd4b25; width: 90%"
+                  class="progress-bar progress-bar-striped"
+                >
+                  90%
+                </div>
+              </div>
+              <h5>CSS</h5>
+              <div
+                class="progress"
+                role="progressbar"
+                aria-label="Success striped example"
+                aria-valuenow="25"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div
+                  class="progress-bar progress-bar-striped bg-success"
+                  style="width: 75%; background-color: #264de4"
+                >
+                  85%
+                </div>
+              </div>
+              <h5>JAVASCRIPT</h5>
+              <div
+                class="progress"
+                role="progressbar"
+                aria-label="Info striped example"
+                aria-valuenow="50"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div
+                  class="progress-bar progress-bar-striped bg-info"
+                  style="width: 60%; background-color: #efd81d"
+                >
+                  70%
+                </div>
+              </div>
+              <h5>REACT/NEXTJS</h5>
+              <div
+                class="progress"
+                role="progressbar"
+                aria-label="Warning striped example"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div
+                  class="progress-bar progress-bar-striped bg-warning"
+                  style="background-color: #5ed3f3; width: 75%"
+                >
+                  75%
+                </div>
+              </div>
+              <h5>NODEJS/EXPRESS/MONGODB</h5>
+              <div
+                class="progress"
+                role="progressbar"
+                aria-label="Danger striped example"
+                aria-valuenow="100"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div
+                  class="progress-bar progress-bar-striped bg-danger"
+                  style="background-color: #73ab63; width: 40%"
+                >
+                  40%
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right_side_about">
+            <h5>More skills</h5>
+            <div class="more_skils">
+              <a href="#">HTML</a>
+              <a href="#">CSS</a>
+              <a href="#">JAVASCRIPT</a>
+              <a href="#">TAILWIND-CSS</a>
+              <a href="#">BOOTSTRAP</a>
+              <a href="#">JQUERY</a>
+              <a href="#">REACT</a>
+              <a href="#">WORDPRESS</a>
+              <a href="#">SHOPIFY</a>
+              <a href="#">NODEJS</a>
+              <a href="#">NEXTJS</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- services section of portfolio ended  -->
 
+    <div class="contact_form">
+        <div class="inner_contact_form">
+            <div class="heading">
+              <h2>Contact Us</h2>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, accusamus?</p>
+            </div>
+            
+            <form id="myform"  action="/SendMessage" method="post">
+              <div class="formbox">
+                <input type="text" name="firstName" id="firstName" class="form-control"  placeholder="First Name" required >
+                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Lastname Name" required >
+              </div>
+
+              <div class="formbox">
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required >
+              </div>
+              <div class="formbox">
+                <input type="number" name="number" id="phone" class="form-control" placeholder="Phone Number" required >
+              </div>
+              <div class="formbox">
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required >
+            </div>
+            <div class="formbox">
+              <textarea style="width: 100%;" placeholder="Message" class="form-control" name="message" id="message" cols="" rows="3"></textarea>
+          </div>
+          <button class="btn btn-secondary px-4 py-2 m-auto d-block mt-5" type="submit" id="Submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
     <script src="/js/Portfolio.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

@@ -7,6 +7,7 @@ const passport = require("passport");
 require("../maincode/auth");
 const ejs = require("ejs");
 const path = require("path");
+const  SendMail = require("./Email");
 
 const app = express();
 
@@ -38,47 +39,23 @@ app.listen(process.env.PORT, () =>
   console.log("Server listening on port:", process.env.PORT)
 );
 
-app.get("/", (req, res) => {
-  const user = {
-    user:null
-  }
-  res.render("Portfolio",{user});
-});
 
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
-// app.get("/auth/google/callback", (req, res, next) => {
-//   passport.authenticate("google", (err, user) => {
-//     if (err) {
-//       // Handle error if authentication fails
-//       return next(err);
-//     }
-
-//     if (!user) {
-//       return res.redirect("/auth/google/failure");
-//     }
-   
-//     return res.redirect(req.session.returnTo || "/");
-//   })(req, res, next);
-// });
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect:'/success',
+  successRedirect:'/',
   failureRedirect:'/auth/google/failure',
 }))
 
-app.get("/success", (req, res) => {
-  console.log(req.user.picture,'users'); 
-  const user = {
-    picture:req.user.picture
-  } 
+app.get("/", (req, res) => {
   if (!req.user) {
     res.redirect("/auth/google");
   } else {
-    res.render("Portfolio", { user });
+    res.render("Portfolio", { user:req.user });
   }
 });
 
@@ -86,14 +63,40 @@ app.get("/auth/google/failure", (req, res) => {
   res.render("Failure.ejs");
 });
 
-
 app.get('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy((err) => {
+  req.logout((err) => {
     if (err) {
-      console.error('Error logging out:', err);
-      return res.redirect('/');
+      // Handle any error that occurred during logout
+      console.error(err);
     }
+    // Redirect the user to the home page or any other desired location
     res.redirect('/');
   });
 });
+
+
+app.get('/PortfolioShow', (req, res) => {
+  if (!req.user) {
+    res.redirect("/auth/google");
+  } else {
+    res.render("PortfolioShow", { user:req.user });
+  }
+})
+
+
+app.post('/SendMessage', (req, res) => {
+  if(req.method !== 'POST') return res.status(400).send({success:false, message:' Post method only allowed'})
+  const {firstName, lastName, email, number, subject, message} = req.body;
+  
+  console.log(firstName + ' ' + lastName + ' ' + email + ' ' + subject + ' ' + message);
+  if(!firstName || !lastName || !email || !subject || !message || !number) return res.status(401).send({success:false, message:'Please fill in all fields'});
+  console.log(firstName, email)
+  try{
+      SendMail(firstName, lastName, email, subject, message, number);
+  }catch(err) {
+      console.log(err.message)
+  }
+
+  res.status(200).redirect('/');
+})
+

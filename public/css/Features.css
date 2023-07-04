@@ -4,4 +4,8 @@
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+a, a:hover {
+  text-decoration: none;
 }/*# sourceMappingURL=Features.css.map */

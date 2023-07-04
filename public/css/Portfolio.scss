@@ -1,8 +1,9 @@
 @import 'Features';
 
-a{
+a {
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: none;
 }
@@ -10,7 +11,6 @@ a:hover {
 li {
     list-style-type: none;
 }
-
 
 
 // Header line code start from here 
@@ -143,6 +143,7 @@ li {
                             font-family: 'Poppins', sans-serif;
                             letter-spacing: 1px;
                             transition: .2s;
+                            text-decoration: none;
                         }
                     }
 
@@ -389,6 +390,7 @@ li {
     height: calc(100vh - 90px);
     background-color: #eff7f2;
     display: flex;
+    overflow: hidden;
 
 
     @include responsive(1100px) {
@@ -397,11 +399,6 @@ li {
         }
     }
 
-    @include responsive(600px) {
-        .inner_body {
-            overflow: visible !important;
-        }
-    }
 
 
     .inner_body {
@@ -501,6 +498,7 @@ li {
                 font-size: 40px;
                 font-weight: 500;
                 color: #23352a;
+
             }
 
             p {
@@ -509,6 +507,16 @@ li {
                 line-height: 31px;
             }
 
+            @include responsive(600px) {
+                .worklogo {
+                    flex-direction: column !important;
+                    align-items: start !important;
+
+                    .logos {
+                        margin-top: 15px !important;
+                    }
+                }
+            }
 
             .worklogo {
                 display: flex;
@@ -530,20 +538,41 @@ li {
                     transition: .2s;
                 }
 
+                @include responsive(1145px) {
+                    .logos {
+                        flex-direction: column !important;
+                        justify-content: center !important;
+                        width: 50% !important;
+                        text-align: center !important;
+                    }
+                }
+
                 .logos {
                     display: flex;
                     width: 60%;
                     justify-content: space-around;
 
-                    h5{
+                    h5 {
                         padding: 10px 15px;
                         border: 2px solid #021400;
                         border-radius: 5px;
+                        font-size: 15px;
                         transition: .1s;
                         cursor: pointer;
+
+
+                        a {
+                            color: black;
+
+                        }
+
                     }
 
-                    h5:hover{
+                    h5:hover a {
+                        color: white;
+                    }
+
+                    h5:hover {
                         background-color: #021400;
                         color: white;
                     }
@@ -716,8 +745,167 @@ li {
 
 
 // <!-- services section of portfolio started  -->
-.services_section {
+.About_me_section {
     @include widthfull();
+    display: flex;
+    align-items: center;
+    background-color: #f5fbff;
+
+    .inner_About_section {
+        width: 80%;
+        height: 90%;
+        margin: auto;
+        display: block;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+
+        h4 {
+            font-size: 40px;
+            color: $seconedHeader;
+            font-weight: 500;
+            margin: 10px 0 20px 0;
+            text-align: center;
+        }
+
+        p {
+            @include paragraph();
+            text-align: center;
+        }
+
+        .bottom_container {
+            display: flex;
+            width: 100%;
+
+            .left_side_Work {
+                width: 50%;
+                height: 100%;
+                border-radius: 10px;
+                padding: 20px 60px 20px 20px;
+                position: relative;
+
+
+
+                .knowledge {
+                    width: 100%;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: column;
+
+                    h5 {
+                        font-size: 16px;
+                        color: #203a26;
+                        font-weight: 600;
+                        margin-top: 29px;
+                        font-family: 'Libre Baskerville', serif;
+                    }
+
+                    .progress {
+                        width: 90%;
+                        height: 30px;
+                    }
+                }
+            }
+
+            .right_side_about {
+                width: 50%;
+                height: 100%;
+                right: 0px;
+                top: 30px;
+                border-radius: 5px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h5 {
+                    font-size: 22px;
+                    font-weight: 500;
+                    color: $seconedHeader;
+                    text-align: center;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    background-color: $maincolor;
+                    display: inline;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    color: white;
+                }
+
+                .more_skils {
+                    @include width();
+                    display: grid;
+                    position: relative;
+                    grid-template-columns:repeat(auto-fit, minmax(200px 1fr));
+                   
+
+                        a{
+                            color: #001306;
+                            font-weight: 600;
+                            text-decoration: none;
+                            border: 2px solid #001306;
+                            display: inline;
+                            align-items: center;
+                            margin:  auto;
+                            justify-content: center;
+                            width: 150px ;
+                            height: 40px;
+                            border-radius: 7px;
+                            position: relative;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                }
+            }
+        }
+    }
 }
 
 // <!-- services section of portfolio ended  -->
+
+
+
+// <!-- Contact form section of portfolio start  -->
+.contact_form{
+    @include widthfull();
+
+
+    .inner_contact_form{
+        width: 80%;
+        margin: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-direction: column;
+        padding-top: 60px;
+
+        .heading h2{
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p{
+            font-size: 15px;
+            color: gray;
+            margin-bottom: 50px;
+        }
+
+        form{
+            width: 700px;
+            height: auto;
+
+
+            .formbox{
+                display: flex; 
+                margin-bottom: 20px;
+
+                input{
+                    margin-right: 10px;
+                    padding: 10px 10px;
+                }
+            }
+        }
+    }
+}
